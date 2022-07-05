@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Globe</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>
+			body {
+				background-color: #fff;
+				color: #444;
+			}
+
+			a {
+				color: #08b;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - Globe</div>
+
+		<!-- Import maps polyfill -->
+		<!-- Remove this when import maps will be widely supported -->
+		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "./build/three.module.js"
+				}
+			}
+		</script>
+
+		<script type="module">
+      // global declaration
+			import * as THREE from 'three';
+			let camera, scene, renderer, sphere;
+			let mouseX = 0, mouseY = 0;
+
+			let windowHalfX = window.innerWidth / 2;
+			let windowHalfY = window.innerHeight / 2;
+
+			// init the scene, camera, and renderer
+			init();
+      // animation loop
+			animate();
+
+			function init() {
+        // camera
+				camera = new THREE.PerspectiveCamera( 
+          75, 
+          window.innerWidth / window.innerHeight, 
+          0.1, 
+          15000
+        );
+				camera.position.z = 10;
+
+        // scene
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
+
+				sphere = new THREE.Mesh( 
+          new THREE.SphereGeometry( 5, 50, 50 ), 
+          new THREE.MeshBasicMaterial({
+            color: 0xff0000
+          }) 
+        );
+				scene.add( sphere );
+
+        // renderer
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				// resize dom handling
+				window.addEventListener( 'resize', onWindowResize );
+			}
+
+      /* control functions*/
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+				renderer.render( scene, camera );
+			}
+
+      /* utils functions */
+      // add this if we want mouse control
+      // document.addEventListener( 'mousemove', onDocumentMouseMove );
+      function onDocumentMouseMove( event ) {
+				mouseX = ( event.clientX - windowHalfX ) * 10;
+				mouseY = ( event.clientY - windowHalfY ) * 10;
+			}
+
+      function onWindowResize() {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+      }
+
+		</script>
+	</body>
+</html>
