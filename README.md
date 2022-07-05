@@ -1,4 +1,4 @@
-# globe
+# Globe with Threejs
 
 ### Todos
 
@@ -6,8 +6,8 @@
 - [x] Texture mapping earth
 - [x] Sharpen rendering
 - [ ] Alter texture with shader for atmosphere effect
-  - [ ] Create first vertex shader
-  - [ ] Create first fragment shader
+  - [x] Create first vertex shader
+  - [x] Create first fragment shader
   - [ ] Add texture to fragment shader using uniforms
   - [ ] Transfer vertexUV to fragment shader using varying 
   - [ ] Add shade of blue using vertexNormal 
