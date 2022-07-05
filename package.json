@@ -1,0 +1,28 @@
+{
+  "name": "globe",
+  "version": "1.0.0",
+  "description": "### Todos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superbnoo/globe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superbnoo/globe/issues"
+  },
+  "homepage": "https://github.com/superbnoo/globe#readme",
+  "devDependencies": {
+    "vite": "^2.9.13",
+    "vite-plugin-string": "^1.1.2"
+  },
+  "dependencies": {
+    "three": "^0.142.0"
+  }
+}
