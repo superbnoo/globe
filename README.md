@@ -4,7 +4,7 @@
 
 - [x] Add a sphere
 - [x] Texture mapping earth
-- [ ] Sharpen rendering
+- [x] Sharpen rendering
 - [ ] Alter texture with shader for atmosphere effect
   - [ ] Create first vertex shader
   - [ ] Create first fragment shader
