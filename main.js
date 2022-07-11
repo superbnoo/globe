@@ -35,7 +35,12 @@ function init() {
   // });
   const material = new THREE.ShaderMaterial({
     vertexShader,
-    fragmentShader
+    fragmentShader,
+    uniforms: {
+      globeTexture: {
+        value: new THREE.TextureLoader().load('./img/earth_uv.jpeg')
+      }
+    }
   })
   sphere = new THREE.Mesh( 
     new THREE.SphereGeometry( 5, 50, 50 ), 

@@ -8,13 +8,16 @@
 - [ ] Alter texture with shader for atmosphere effect
   - [x] Create first vertex shader
   - [x] Create first fragment shader
-  - [ ] Add texture to fragment shader using uniforms
-  - [ ] Transfer vertexUV to fragment shader using varying 
-  - [ ] Add shade of blue using vertexNormal 
-  - [ ] Comet Haley
+  - [x] Add texture to fragment shader using uniforms
+  - [x] Transfer vertexUV to fragment shader using varying 
+  - [ ] Add shade of blue using vertexNormal  
 
 - [ ] Add extended atmosphere with second shader
 - [ ] Add mouse movement control
 - [ ] Add background stars
 - [ ] Add html css
 - [ ] DONE
+
+
+### Uniforms
+Passing object to shader - passing texture to shader
