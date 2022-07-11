@@ -10,7 +10,7 @@
   - [x] Create first fragment shader
   - [x] Add texture to fragment shader using uniforms
   - [x] Transfer vertexUV to fragment shader using varying 
-  - [ ] Add shade of blue using vertexNormal  
+  - [x] Add shade of blue using vertexNormal  
 
 - [ ] Add extended atmosphere with second shader
 - [ ] Add mouse movement control
