@@ -1,15 +1,19 @@
 // global declaration
+import gsap from 'gsap';
 import * as THREE from 'three';
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
 import atmosphereVertexShader from './shaders/atmosphereVertex.glsl';
 import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl';
 // console.log(fragmentShader);
-let camera, scene, renderer, sphere;
-let mouseX = 0, mouseY = 0;
-
+let camera, scene, renderer, sphere, group;
+const mouse = {
+  x: undefined,
+  y: undefined
+}
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
+
 
 // init the scene, camera, and renderer
 init();
@@ -63,6 +67,10 @@ function init() {
   atmosphere.scale.set(1.1, 1.1, 1.1);
   scene.add( atmosphere );
 
+  group = new THREE.Group();
+  group.add(sphere);
+  scene.add(group);
+
 
   // renderer
   renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -79,6 +87,13 @@ function animate() {
   requestAnimationFrame( animate );
   render();
   sphere.rotation.y += 0.001;
+  if (mouse.x !== undefined && mouse.y !== undefined) {
+    gsap.to(group.rotation, {
+      x: -mouse.y * 0.3,
+      y: mouse.x * 0.5,
+      duration: 2
+    })
+  }
 }
 
 function render() {
@@ -87,10 +102,12 @@ function render() {
 
 /* utils functions */
 // add this if we want mouse control
-// document.addEventListener( 'mousemove', onDocumentMouseMove );
+document.addEventListener( 'mousemove', onDocumentMouseMove );
 function onDocumentMouseMove( event ) {
-  mouseX = ( event.clientX - windowHalfX ) * 10;
-  mouseY = ( event.clientY - windowHalfY ) * 10;
+  mouse.x = (event.clientX / innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / innerHeight) * 2 - 1;
+
+  console.log(mouse);
 }
 
 function onWindowResize() {

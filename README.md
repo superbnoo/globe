@@ -13,7 +13,7 @@
   - [x] Add shade of blue using vertexNormal  
 
 - [x] Add extended atmosphere with second shader
-- [ ] Add mouse movement control
+- [x] Add mouse movement control
 - [ ] Add background stars
 - [ ] Add html css
 - [ ] DONE
