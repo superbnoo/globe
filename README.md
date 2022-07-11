@@ -12,7 +12,7 @@
   - [x] Transfer vertexUV to fragment shader using varying 
   - [x] Add shade of blue using vertexNormal  
 
-- [ ] Add extended atmosphere with second shader
+- [x] Add extended atmosphere with second shader
 - [ ] Add mouse movement control
 - [ ] Add background stars
 - [ ] Add html css

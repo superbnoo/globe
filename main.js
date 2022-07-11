@@ -2,6 +2,8 @@
 import * as THREE from 'three';
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
+import atmosphereVertexShader from './shaders/atmosphereVertex.glsl';
+import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl';
 // console.log(fragmentShader);
 let camera, scene, renderer, sphere;
 let mouseX = 0, mouseY = 0;
@@ -48,6 +50,20 @@ function init() {
   );
   scene.add( sphere );
 
+  // create atmosphere
+  const atmosphere = new THREE.Mesh( 
+    new THREE.SphereGeometry( 5, 50, 50 ), 
+    new THREE.ShaderMaterial({
+      vertexShader: atmosphereVertexShader,
+      fragmentShader: atmosphereFragmentShader,
+      blending: THREE.AdditiveBlending,
+      side: THREE.BackSide
+    })
+  );
+  atmosphere.scale.set(1.1, 1.1, 1.1);
+  scene.add( atmosphere );
+
+
   // renderer
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setPixelRatio( window.devicePixelRatio );
@@ -62,6 +78,7 @@ function init() {
 function animate() {
   requestAnimationFrame( animate );
   render();
+  sphere.rotation.y += 0.001;
 }
 
 function render() {
