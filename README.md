@@ -22,6 +22,9 @@
 ### Uniforms
 Passing object to shader - passing texture to shader
 
+### Demo
+[Demo](https://superbnoo.github.io/)
+
 ### References
 - Intermediate Three.js Tutorial - Create a Globe with Custom Shaders [Youtube](https://www.youtube.com/watch?v=vM8M4QloVL0)
 - Threejs [Site](https://threejs.org/)
