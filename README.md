@@ -5,7 +5,7 @@
 - [x] Add a sphere
 - [x] Texture mapping earth
 - [x] Sharpen rendering
-- [ ] Alter texture with shader for atmosphere effect
+- [x] Alter texture with shader for atmosphere effect
   - [x] Create first vertex shader
   - [x] Create first fragment shader
   - [x] Add texture to fragment shader using uniforms
@@ -21,3 +21,7 @@
 
 ### Uniforms
 Passing object to shader - passing texture to shader
+
+### References
+- Intermediate Three.js Tutorial - Create a Globe with Custom Shaders [Youtube](https://www.youtube.com/watch?v=vM8M4QloVL0)
+- Threejs [Site](https://threejs.org/)
