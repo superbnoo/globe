@@ -14,9 +14,9 @@
 
 - [x] Add extended atmosphere with second shader
 - [x] Add mouse movement control
-- [ ] Add background stars
-- [ ] Add html css
-- [ ] DONE
+- [x] Add background stars
+- [x] Add html css
+- [x] DONE
 
 
 ### Uniforms
