@@ -6,13 +6,13 @@ import fragmentShader from './shaders/fragment.glsl';
 import atmosphereVertexShader from './shaders/atmosphereVertex.glsl';
 import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl';
 // console.log(fragmentShader);
-let camera, scene, renderer, sphere, group;
+let camera, scene, renderer, sphere, group, canvasContainer;
 const mouse = {
   x: undefined,
   y: undefined
 }
-let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
+// let windowHalfX = window.innerWidth / 2;
+// let windowHalfY = window.innerHeight / 2;
 
 
 // init the scene, camera, and renderer
@@ -21,10 +21,12 @@ init();
 animate();
 
 function init() {
+  canvasContainer = document.querySelector('#canvasContainer');
+
   // camera
   camera = new THREE.PerspectiveCamera( 
     75, 
-    window.innerWidth / window.innerHeight, 
+    canvasContainer.offsetWidth / canvasContainer.offsetHeight, 
     0.1, 
     15000
   );
@@ -71,12 +73,36 @@ function init() {
   group.add(sphere);
   scene.add(group);
 
+  // stars
+  const starGeometry = new THREE.BufferGeometry();
+  const starMaterial = new THREE.PointsMaterial({
+    color: 0xffffff
+  });
+
+  const starVertices = [];
+  for (let i = 0; i < 2000; i++) {
+    const x = (Math.random() - 0.5) * 2000;
+    const y = (Math.random() - 0.5) * 2000;
+    const z = -(Math.random() + 0.002) * 2000;
+    starVertices.push(x,y,z);
+  }
+  console.log(starVertices);
+  starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(
+    starVertices, 3
+  ));
+
+  const stars = new THREE.Points(starGeometry, starMaterial);
+  scene.add(stars);
+
 
   // renderer
-  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer = new THREE.WebGLRenderer( { 
+    antialias: true,
+    canvas: document.querySelector('canvas')
+  } );
   renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  document.body.appendChild( renderer.domElement );
+  renderer.setSize( canvasContainer.offsetWidth, canvasContainer.offsetHeight );
+  // document.body.appendChild( renderer.domElement );
 
   // resize dom handling
   window.addEventListener( 'resize', onWindowResize );
@@ -106,15 +132,13 @@ document.addEventListener( 'mousemove', onDocumentMouseMove );
 function onDocumentMouseMove( event ) {
   mouse.x = (event.clientX / innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / innerHeight) * 2 - 1;
-
-  console.log(mouse);
 }
 
 function onWindowResize() {
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
+  // windowHalfX = window.innerWidth / 2;
+  // windowHalfY = window.innerHeight / 2;
 
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( canvasContainer.offsetWidth, canvasContainer.offsetHeight );
 }
