@@ -128,7 +128,7 @@ function onDocumentMouseMove( event ) {
   mouse.y = -(event.clientY / innerHeight) * 2 - 1;
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+window.addEventListener("load", function(event) { 
   // init the scene, camera, and renderer
   init();
   // animation loop
