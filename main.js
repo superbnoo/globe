@@ -14,12 +14,6 @@ const mouse = {
 // let windowHalfX = window.innerWidth / 2;
 // let windowHalfY = window.innerHeight / 2;
 
-
-// init the scene, camera, and renderer
-init();
-// animation loop
-animate();
-
 function init() {
   canvasContainer = document.querySelector('#canvasContainer');
 
@@ -134,6 +128,12 @@ function onDocumentMouseMove( event ) {
   mouse.y = -(event.clientY / innerHeight) * 2 - 1;
 }
 
+document.addEventListener("DOMContentLoaded", function(event) { 
+  // init the scene, camera, and renderer
+  init();
+  // animation loop
+  animate();
+});
 function onWindowResize() {
   // windowHalfX = window.innerWidth / 2;
   // windowHalfY = window.innerHeight / 2;
